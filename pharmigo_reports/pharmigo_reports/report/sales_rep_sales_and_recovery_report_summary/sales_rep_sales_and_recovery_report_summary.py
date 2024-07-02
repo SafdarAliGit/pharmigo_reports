@@ -16,7 +16,7 @@ def get_columns():
 
         {
             "label": "<b>Rep Name</b>",
-            "fieldname": "sale_rep_name",
+            "fieldname": "sales_person_name",
             "fieldtype": "Data",
             "width": 120
         },
@@ -63,7 +63,7 @@ def get_data(filters):
     data = []
     sales_invoice = """
     SELECT 
-        inv.sales_person_name AS sale_rep_name,
+        inv.sales_person_name,
         SUM(CASE WHEN inv.status = "Return" THEN inv.grand_total ELSE 0 END) AS return_amount,
         SUM(COALESCE(inv.grand_total,0)) AS grand_total,
         SUM(COALESCE(inv.grand_total, 0) - COALESCE(inv.outstanding_amount,0)) AS paid_amount,
