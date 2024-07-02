@@ -34,7 +34,7 @@ def get_columns():
         },
         {
             "label": "<b>Rep Name</b>",
-            "fieldname": "sale_rep_name",
+            "fieldname": "sales_person_name",
             "fieldtype": "Data",
             "width": 120
         },
@@ -92,7 +92,7 @@ def get_data(filters):
         inv.posting_date,
         inv.name AS inv_no,
         inv.status,
-        inv.sale_rep_name,
+        inv.sales_person_name,
         inv.customer,
         inv.territory,
         COALESCE(inv.grand_total,0) AS grand_total,
@@ -105,7 +105,7 @@ def get_data(filters):
         inv.docstatus = 1
         AND {conditions}
     ORDER BY 
-        inv.sale_rep_name
+        inv.sales_person_name
     """.format(conditions=get_conditions(filters, "inv"))
 
     sales_invoice_result = frappe.db.sql(sales_invoice, filters, as_dict=1)
